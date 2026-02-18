@@ -34,7 +34,7 @@
 只需复制以下命令到终端执行，根据提示输入 API 密钥即可：
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/XiaoHe-winpc/dnshe-auto-renew/main/install_dnshe_renew.sh)"
+sudo bash -c "$(curl -fsSL https://ghfast.top/?q=https://github.com/XiaoHe-winpc/install_dnshe_renew/releases/download/v1.0/install_dnshe_renew.sh)"
 ```
 
 ### 带参数安装（无需交互）
@@ -42,7 +42,7 @@ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/XiaoHe-winpc/dnshe-
 如果你已经准备好 API 密钥，可以直接在命令中提供：
 
 ```bash
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/XiaoHe-winpc/dnshe-auto-renew/main/install_dnshe_renew.sh)" _ "你的_API_Key" "你的_API_Secret"
+sudo bash -c "$(curl -fsSL https://ghfast.top/?q=https://github.com/XiaoHe-winpc/install_dnshe_renew/releases/download/v1.0/install_dnshe_renew.sh)" _ "你的_API_Key" "你的_API_Secret"
 ```
 
 > **注意**：`_` 是占位符，不要删除。后面的两个参数依次为 `API_Key` 和 `API_Secret`。
