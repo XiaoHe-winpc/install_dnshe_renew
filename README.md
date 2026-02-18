@@ -123,4 +123,4 @@ Copyright (c) 2026 XiaoHe-winpc
 
 ## 💬 问题反馈
 
-如果遇到任何问题，请 [提交 Issue](https://github.com/XiaoHe-winpc/dnshe-auto-renew/issues) 并附上日志内容（`/var/log/dnshe_renew.log`）。
+如果遇到任何问题，请 [提交 Issue](https://github.com/XiaoHe-winpc/install_dnshe_renew/issues) 并附上日志内容（`/var/log/dnshe_renew.log`）。
