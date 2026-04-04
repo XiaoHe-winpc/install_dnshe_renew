@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Raspbian-blue)](https://www.raspberrypi.org/)
 
-一键部署脚本，让你的 [DNSHE](https://my.dnshe.com) 免费域名每 160 天自动续期，永不过期。  
+一键部署脚本，让你的 [DNSHE](https://my.dnshe.com) 免费域名自动续期，永不过期。  
 基于 Shell + curl，树莓派开箱即用。
 
 ---
@@ -11,7 +11,7 @@
 ## ✨ 功能特点
 
 - ✅ **全自动安装**：一条命令完成依赖安装、脚本部署、定时配置。
-- ✅ **智能续期**：每 160 天触发一次续期，即使设备关机也会在开机后补执行。
+- ✅ **智能续期**：全自动续期，自动检测是否可续期。
 - ✅ **安全存储**：API 密钥写入系统环境变量 `/etc/environment`，不暴露在脚本中。
 - ✅ **日志记录**：所有操作记录到 `/var/log/dnshe_renew.log`，方便排查问题。
 - ✅ **兼容性强**：只需 `bash`、`curl` 和 `jq`（脚本会自动安装 `jq`）。
@@ -67,42 +67,6 @@ cat /var/log/dnshe_renew.log
 
 ```bash
 systemctl list-timers dnshe-renew.timer
-```
-
----
-
-## ⚙️ 工作原理
-
-- 脚本通过 DNSHE 官方 API（`api005.dnshe.com`）获取你的域名列表，并尝试续期。
-- Systemd timer 每 160 天触发一次续期任务（`OnUnitActiveSec=160d`），若错过则开机补执行（`Persistent=true`）。
-- 续期窗口为域名到期前 180 天内，160 天的周期确保你有足够缓冲。
-
----
-
-## 🛠️ 自定义配置
-
-如需修改 API 接口地址或续期参数，请编辑 `/usr/local/bin/dnshe_renew.sh` 中的以下部分：
-
-```bash
-API_BASE="https://api005.dnshe.com/index.php"   # API 入口
-# 续期 URL 构造（第50行左右）
-renew_url="${API_BASE}?m=renew&id=$id"
-```
-
-修改后保存，手动运行测试即可。
-
----
-
-## 🧹 卸载方法
-
-如需完全移除自动续期服务，执行以下命令：
-
-```bash
-sudo systemctl stop dnshe-renew.timer
-sudo systemctl disable dnshe-renew.timer
-sudo rm /etc/systemd/system/dnshe-renew.{service,timer}
-sudo rm /usr/local/bin/dnshe_renew.sh
-sudo sed -i '/^DNSHE_API_/d' /etc/environment
 ```
 
 ---
